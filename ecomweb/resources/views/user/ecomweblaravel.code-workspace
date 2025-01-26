@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"path": "../../../../../../../../../Downloads/Laravel-11-E-Commerce-Project-main"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Laravel-11-E-Commerce-Project-main"
+	}
+}
