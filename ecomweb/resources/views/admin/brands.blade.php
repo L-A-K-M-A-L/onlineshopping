@@ -33,7 +33,8 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="{{route('admin.brand.add')}}"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="{{route('admin.brand.add')}}"><i class="icon-plus"></i>Add
+                    new</a>
             </div>
             <div class="wg-table table-all-user">
                 <div class="table-responsive">
@@ -56,7 +57,8 @@
                                     <td>{{$brand->id}}</td>
                                     <td class="pname">
                                         <div class="image">
-                                            <img src="{{asset('uploads/brands')}}/{{$brand->image}}" alt="{{$brand->image}}" class="image">
+                                            <img src="{{asset('uploads/brands')}}/{{$brand->image}}" alt="{{$brand->image}}"
+                                                class="image">
                                         </div>
                                         <div class="name">
                                             <a href="#" class="body-title-2">{{$brand->name}}</a>
@@ -66,12 +68,15 @@
                                     <td><a href="#" target="_blank">0</a></td>
                                     <td>
                                         <div class="list-icon-function">
-                                            <a href="{{route('admin.brand.edit', ['id'=>$brand->id])}}">
+                                            <a href="{{route('admin.brand.edit', ['id' => $brand->id])}}">
                                                 <div class="item edit">
                                                     <i class="icon-edit-3"></i>
                                                 </div>
                                             </a>
-                                            <form action="#" method="POST">
+                                            <form action="{{route('admin.brand.delete', ['id' => $brand->id])}}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
                                                 <div class="item text-danger delete">
                                                     <i class="icon-trash-2"></i>
                                                 </div>
@@ -93,3 +98,40 @@
 </div>
 
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            $('.delete').click(function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to delete this brand?')) {
+                    $(this).parent().submit();
+                }
+            });
+        });
+    </script>
+
+@endpush
+@push('scripts')
+    <script>
+        $(function () {
+            $('.delete').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                swal({
+                    title: "Are you sure?",
+                    text: "You want to delete tgis record",
+                    type: "warning",
+                    buttons : ["No","Yes"],
+                    confirmButtonColor: '#3085d6',
+                }).then(function(result){
+                    if(result){
+                        form.submit();
+                    }
+                })
+
+            });
+        });
+
+    </script>
+
+@endpush
