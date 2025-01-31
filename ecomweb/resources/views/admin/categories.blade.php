@@ -33,8 +33,8 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="#"><i class="icon-plus"></i>Add
-                    new</a>
+                <a class="tf-button style-1 w208" href="{{route('admin.category.add')}}"><i class="icon-plus"></i>Add
+                    New Category</a>
             </div>
             <div class="wg-table table-all-user">
                 <div class="table-responsive">
@@ -57,14 +57,14 @@
                                     <td>{{$category->id}}</td>
                                     <td class="pname">
                                         <div class="image">
-                                            <img src="{{asset('uploads/brands')}}/{{$category->image}}" alt="{{$category->image}}"
+                                            <img src="{{asset('uploads/category')}}/{{$category->image}}" alt="{{$category->image}}"
                                                 class="image">
                                         </div>
                                         <div class="name">
                                             <a href="#" class="body-title-2">{{$category->name}}</a>
                                         </div>
                                     </td>
-                                    <td>{{$brand->slug}}</td>
+                                    <td>{{$category->slug}}</td>
                                     <td><a href="#" target="_blank">0</a></td>
                                     <td>
                                         <div class="list-icon-function">
@@ -103,7 +103,7 @@
         $(document).ready(function () {
             $('.delete').click(function (e) {
                 e.preventDefault();
-                if (confirm('Are you sure you want to delete this brand?')) {
+                if (confirm('Are you sure you want to delete this Category?')) {
                     $(this).parent().submit();
                 }
             });
@@ -119,7 +119,7 @@
                 var form = $(this).closest('form');
                 swal({
                     title: "Are you sure?",
-                    text: "You want to delete tgis record",
+                    text: "You want to delete this record",
                     type: "warning",
                     buttons : ["No","Yes"],
                     confirmButtonColor: '#3085d6',

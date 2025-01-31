@@ -119,7 +119,7 @@
                 var form = $(this).closest('form');
                 swal({
                     title: "Are you sure?",
-                    text: "You want to delete tgis record",
+                    text: "You want to delete this record",
                     type: "warning",
                     buttons : ["No","Yes"],
                     confirmButtonColor: '#3085d6',
