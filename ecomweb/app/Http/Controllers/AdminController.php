@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Validation\Rule;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -108,5 +109,11 @@ class AdminController extends Controller
         }
         $brand->delete();
         return redirect()->route('admin.brands')->with('status', 'Brand has been deleted successfully');
+    }
+
+    public function catogories()
+    {
+        $catogories = Category::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.categories', compact('catogories'));
     }
 }
