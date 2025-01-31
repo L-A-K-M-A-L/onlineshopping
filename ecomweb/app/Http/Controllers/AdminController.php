@@ -167,6 +167,8 @@ class AdminController extends Controller
 
         $request->validate([
             'name' => 'required',
+            // the slug should be unique in the categories table but should ignore the current category id
+            // categories is from model
             'slug' => ['required', Rule::unique('categories', 'slug')->ignore($request->id)],
             'image' => 'mimes:png,jpg,jpeg|max:2048'
         ]);
@@ -190,5 +192,14 @@ class AdminController extends Controller
         $category->save();
 
         return redirect()->route('admin.categories')->with('status', 'Category has been Updated successfully');
+    }
+
+    public function category_delete($id){
+        $category = Category::find($id);
+        if (File::exists(public_path('uploads/category') . '/' . $category->image)) {
+            File::delete(public_path('uploads/category') . '/' . $category->image);
+        }
+        $category->delete();
+        return redirect()->route('admin.categories')->with('status', 'Category has been deleted successfully');
     }
 }
